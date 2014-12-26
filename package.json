@@ -1,0 +1,37 @@
+{
+  "name": "cassandra-vdba-driver",
+  "version": "0.1.0",
+  "description": "Cassandra VDBA driver for Node.js.",
+  "author": "Raúl G. González <raulggonzalezsw@outlook.com>",
+  "keywords": [
+    "Cassandra",
+    "Databases",
+    "DataStax",
+    "Node.js",
+    "NoSQL",
+    "Storage",
+    "Valencia DB API",
+    "VDBA"
+  ],
+  "homepage": "https://github.com/raulggonzalez/cassandra-vdba-driver",
+  "bugs": {
+    "url": "https://github.com/raulggonzalez/cassandra-vdba-driver/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raulggonzalez/cassandra-vdba-driver.git"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "cassandra-driver": "^1.0.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-compress": "^0.12.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-jsdoc": "^0.6.1"
+  }
+}
