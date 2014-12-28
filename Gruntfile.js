@@ -92,6 +92,23 @@ module.exports = function(grunt) {
       }
     },
 
+    mochaTest:{
+      options: {
+        ignoreLeaks: false,
+        quiet: false,
+        reporter: "spec",
+        require: ["should", function() { util = require("util"); }]
+      },
+
+      common: {
+        src: ["test/init.js", "../vdba-driver-validator/test/common/**/*.js"]
+      },
+
+      specific: {
+        src: ["test/init.js", "test/**/*.js"]
+      }
+    },
+
     uglify: {
       options: {
         banner: "/*! <%= pkg.name %> - <%= pkg.version %> (<%= grunt.template.today('yyyy-mm-dd') %>) */",
@@ -125,16 +142,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-jsdoc");
+  grunt.loadNpmTasks("grunt-mocha-test");
 
   //(3) define tasks
-  grunt.registerTask("test", "Perform the unit testing.", function test() {
-    var done = this.async();
-    var ps = child_process.exec("mocha", function(error, stdout, stderr) {
-      grunt.log.writeln(stdout);
-      grunt.log.writeln(stderr);
-      done(error);
-    });
-  });
+  grunt.registerTask("testSpecific", "Specific unit testing", [
+    "clean:test",
+    "mochaTest:specific"
+  ]);
 
   grunt.registerTask("api.html.zip", "Generates the API doc.", [
     "clean:doc",
@@ -146,9 +160,11 @@ module.exports = function(grunt) {
   grunt.registerTask("all", "Generates all.", [
     "jshint:grunt",
     "jshint:test",
-    "concat:node",
-    "uglify:node",
-    "api.html.zip"
+    "jshint:lib",
+    //"concat:node",
+    //"uglify:node",
+    //"api.html.zip",
+    "mochaTest"
   ]);
 };
 
