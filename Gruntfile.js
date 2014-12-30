@@ -85,6 +85,7 @@ module.exports = function(grunt) {
       test: {
         options: {
           ignores: [
+            "test/data/*.cql",
             "test/vendor/**",
             "test/mocha.opts"
           ]
@@ -161,7 +162,7 @@ module.exports = function(grunt) {
     "clean:doc",
   ]);
 
-  grunt.registerTask("all", "Generates all.", [
+  grunt.registerTask("default", "All.", [
     "jshint:grunt",
     "jshint:test",
     "jshint:lib",

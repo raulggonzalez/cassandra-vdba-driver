@@ -20,6 +20,11 @@ exports.database = {
       userId: {type: "int", pk: true},
       username: "text",
       password: "text"
+    },
+    index: {
+      name: "ix_user_username",
+      columns: "username",
+      options: {}
     }
   },
 
